@@ -7,12 +7,52 @@ const MeetupSchema= new mongoose.Schema({
         type:String,
         required:true,
     },
-    date:{
-        type:Date,
+    
+    host:{
+        start:{
+            type:String,
+            required:true
+        },
+        end:{
+            type:String,
+            required:true
+        }
+    },
+    price:{
+        type:Number,
         required:true
     },
+    speakers:[
+       {
+        name:{ 
+            type:String,
+            required:true
+        },
+        title:{ 
+            type:String,
+            required:true
+        },
+        photo:{ 
+            type:String,
+            required:true
+        }
+       }
+    ],
     description:{
         type:String,
+        required:true
+    },
+
+    dressCode:{
+        type:String,
+        required:true
+    },
+    ageRestrictions:{
+        type:String,
+        required:true
+    },
+    tags:{
+        type:[String],
         required:true
     },
     imageUrl:{
@@ -25,6 +65,8 @@ const MeetupSchema= new mongoose.Schema({
         required:true,
         enum:['Online', 'Offline']
     },
+},{
+    timestamps:true
 })
 
 
