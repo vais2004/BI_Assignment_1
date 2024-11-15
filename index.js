@@ -63,7 +63,7 @@ const meetup2={
       photo:"https://images.pexels.com/photos/8117528/pexels-photo-8117528.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     }
   ],
-  description: "The Tech Innovators Summit is a premier conference bringing together the brightest minds and leaders in technology. Join us for an immersive experience where industry experts explore the latest breakthroughs in AI, cybersecurity, and software engineering. Gain insights into cutting-edge innovations, emerging trends, and the future of technology. This conference is a must-attend event for anyone passionate about driving change and advancing tech solutions to address real-world challenges.",
+  description: " This conference is a must-attend event for anyone passionate about driving change and advancing tech solutions to address real-world challenges. Join us for an immersive experience where industry experts explore the latest breakthroughs in AI, cybersecurity, and software engineering. Gain insights into cutting-edge innovations, emerging trends, and the future of technology.",
   dressCode:"Smart casual",
   ageRestrictions:"18 and above",
   tags:['Technology', 'Innovation', 'AI', ],
@@ -71,11 +71,95 @@ const meetup2={
   type:"Offline"
 }
 
+const meetup3={
+  title: "Photography for Beginners",
+  host: {
+    start: "2024-04-21T09:00:00.000Z",
+    end: "2024-04-21T13:00:00.000Z"
+  },
+  price: 2000,
+  speakers: [
+    {
+      name: "Varun Patel",
+      title: "Professional Photographer",
+      photo: "https://images.pexels.com/photos/4579374/pexels-photo-4579374.jpeg?auto=compress&cs=tinysrgb&w=400"
+    },
+    {
+      name: "Shiv Prasad",
+      title: "Photography Instructor",
+      photo: "https://images.pexels.com/photos/7620804/pexels-photo-7620804.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    }
+  ],
+  description: "Join our 'Photography for Beginners' workshop, designed to introduce you to the world of photography. This hands-on session covers essential topics, from camera settings to composition techniques, making it perfect for beginners eager to capture stunning images. Learn tips and tricks from expert photographers, and leave with the skills to start your own creative journey.",
+  dressCode: "Comfortable casual",
+  ageRestrictions: "15 and above",
+  tags: ["Photography", "Beginner", "Workshop"],
+  imageUrl: "https://images.pexels.com/photos/12528668/pexels-photo-12528668.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  type: "Offline"
+}
+
+const meetup4={
+  title: "Coding Bootcamp",
+  host: {
+    start: "2024-03-05T08:00:00.000Z",
+    end: "2024-03-05T17:00:00.000Z"
+  },
+  price: 3000,
+  speakers: [
+    {
+      name: "Siya Nohara",
+      title: "Full Stack Developer",
+      photo: "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=400"
+    },
+    {
+      name: "Max Kim",
+      title: "Software Engineering Instructor",
+      photo: "https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    }
+  ],
+  description: "Perfect for aspiring developers, this bootcamp will give you a strong foundation in coding and prepare you for the tech industry. This day-long event is designed for beginners and those looking to sharpen their coding skills. Dive into the world of coding with our immersive 'Coding Bootcamp.'  Our expert instructors will guide you through programming fundamentals, problem-solving techniques, and hands-on coding exercises. ",
+  dressCode: "Casual",
+  ageRestrictions: "16 and above",
+  tags: ["Coding", "Bootcamp", "Programming", "Development"],
+  imageUrl: "https://images.pexels.com/photos/1181670/pexels-photo-1181670.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  type: "Offline"
+}
+
+const meetup5={
+  title: "Social Media Marketing ",
+  host: {
+    start: "2024-04-10T10:00:00.000Z",
+    end: "2024-04-10T15:00:00.000Z"
+  },
+  price: 2000,
+  speakers: [
+    {
+      name: "Tom Cruise",
+      title: "Digital Marketing Expert",
+      photo: "https://images.pexels.com/photos/4473561/pexels-photo-4473561.jpeg?auto=compress&cs=tinysrgb&w=400"
+    },
+    {
+      name: "Jackie Chan",
+      title: "Social Media Strategist",
+      photo: "https://images.pexels.com/photos/5475569/pexels-photo-5475569.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    }
+  ],
+  description: "This event is designed for beginners and business owners looking to build a strong online presence. Unlock the power of social media with our 'Social Media Marketing Made Simple' workshop. Learn key strategies for content creation, audience engagement, and brand growth on popular platforms. With insights from industry professionals, you’ll gain practical skills to elevate your social media marketing efforts.",
+  dressCode: "Smart casual",
+  ageRestrictions: "18 and above",
+  tags: ["Social Media", "Marketing", , "Digital Marketing"],
+  imageUrl: "https://images.pexels.com/photos/3184450/pexels-photo-3184450.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  type: "Offline"
+}
+
+
+
 async function createMeetup(newMeetup) {
   try{
     const meetup = new Meetup(newMeetup)
     const saveMeetup= await meetup.save()
-    console.log('New Meetup data: ', saveMeetup)
+    //console.log('New Meetup data: ', saveMeetup)
+    return saveMeetup
   }catch(error){
       throw error
   } 
@@ -83,6 +167,10 @@ async function createMeetup(newMeetup) {
 
 //createMeetup(meetup1)
 //createMeetup(meetup2)
+//createMeetup(meetup3)
+//createMeetup(meetup4)
+//createMeetup(meetup5)
+
 
 // add new book by post
 
@@ -150,7 +238,34 @@ app.get('/meetups/:meetupId', async (req, res) => {
   }
 });
 
-//add new data
+
+//update a meetup's data with the help of its id
+
+async function updateMeetupData(bookId,dataToUpdate) {
+  try{
+      const updatedMeetup= await Meetup.findByIdAndUpdate(bookId, dataToUpdate,{new:true})
+      return updatedMeetup
+  }catch(error){
+      throw error
+  }
+}
+
+app.post('/meetups/:meetupId', async (req,res)=>{
+  try{
+      const updatedMeetup= await updateMeetupData(req.params.bookId, req.body)
+
+      if(updatedMeetup){
+          res.status(200).json({message:"meetup updated successfully."})
+      }else{
+          res.status(404).json({error:"meetup not found."})
+      }
+  }catch(error){
+      res.status(500).json({error:"failed to update data."})
+  }
+})
+
+
+
 
 
 //delete meetup by id
