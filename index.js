@@ -20,8 +20,10 @@ initializeDatabase()
 const meetup1={
   title:"Marketing Seminar",
   host:{
-    start:"2023-08-15T10:00:00.000Z",
-    end:"2023-08-15T12:00:00.000Z"
+    startDate:"Thu Jul 13 2023",
+    startTime:"7:00:00 AM IST",
+    endDate:"Thu Jul 13 2023",
+    endTime:"12:00:00 AM IST"
   }, 
   price:3000,
   speakers:[
@@ -47,8 +49,10 @@ const meetup1={
 const meetup2={
   title:"Tech Conference",
   host:{
-    start:"2023-07-13T07:00:00.000Z",
-    end:"2023-07-13T10:00:00.000Z"
+    startDate:"Mon Jul 10 2023",
+    startTime:"2:00:00 PM IST",
+    endDate:"Mon Jul 10 2023",
+    endTime:"6:00:00 PM IST"
   }, 
   price:2500,
   speakers:[
@@ -74,8 +78,10 @@ const meetup2={
 const meetup3={
   title: "Photography for Beginners",
   host: {
-    start: "2024-04-21T09:00:00.000Z",
-    end: "2024-04-21T13:00:00.000Z"
+    startDate:"Tue Aug 15 2023",
+    startTime:"10:00:00 AM IST",
+    endDate:"Tue Aug 15 2023",
+    endTime:"6:00:00 PM IST"
   },
   price: 2000,
   speakers: [
@@ -101,8 +107,10 @@ const meetup3={
 const meetup4={
   title: "Coding Bootcamp",
   host: {
-    start: "2024-03-05T08:00:00.000Z",
-    end: "2024-03-05T17:00:00.000Z"
+    startDate:"Mon Jul 10 2023",
+    startTime:"10:00:00 AM IST",
+    endDate:"Mon Jul 10 2023",
+    endTime:"6:00:00 PM IST"
   },
   price: 3000,
   speakers: [
@@ -128,8 +136,10 @@ const meetup4={
 const meetup5={
   title: "Social Media Marketing ",
   host: {
-    start: "2024-04-10T10:00:00.000Z",
-    end: "2024-04-10T15:00:00.000Z"
+    startDate:"Wed Sep 20 2023",
+    startTime:"3:00:00 PM IST",
+    endDate:"Wed Sep 20 2023",
+    endTime:"6:00:00 PM IST"
   },
   price: 2000,
   speakers: [
@@ -165,11 +175,11 @@ async function createMeetup(newMeetup) {
   } 
 }
 
-//createMeetup(meetup1)
-//createMeetup(meetup2)
-//createMeetup(meetup3)
-//createMeetup(meetup4)
-//createMeetup(meetup5)
+// createMeetup(meetup1)
+// createMeetup(meetup2)
+// createMeetup(meetup3)
+// createMeetup(meetup4)
+// createMeetup(meetup5)
 
 
 // add new book by post
@@ -241,9 +251,9 @@ app.get('/meetup/:meetupId', async (req, res) => {
 
 //update a meetup's data with the help of its id
 
-async function updateMeetupData(bookId,dataToUpdate) {
+async function updateMeetupData(meetupId,dataToUpdate) {
   try{
-      const updatedMeetup= await Meetup.findByIdAndUpdate(bookId, dataToUpdate,{new:true})
+      const updatedMeetup= await Meetup.findByIdAndUpdate(meetupId, dataToUpdate,{new:true})
       return updatedMeetup
   }catch(error){
       throw error
@@ -252,7 +262,7 @@ async function updateMeetupData(bookId,dataToUpdate) {
 
 app.post('/meetup/:meetupId', async (req,res)=>{
   try{
-      const updatedMeetup= await updateMeetupData(req.params.bookId, req.body)
+      const updatedMeetup= await updateMeetupData(req.params.meetupId, req.body)
 
       if(updatedMeetup){
           res.status(200).json({message:"meetup updated successfully."})
