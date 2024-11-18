@@ -67,7 +67,7 @@ const meetup2={
   dressCode:"Smart casual",
   ageRestrictions:"18 and above",
   tags:['Technology', 'Innovation', 'AI', ],
-  imageUrl:"https://images.pexels.com/photos/9301156/pexels-photo-9301156.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  imageUrl:"https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   type:"Offline"
 }
 
@@ -94,7 +94,7 @@ const meetup3={
   dressCode: "Comfortable casual",
   ageRestrictions: "15 and above",
   tags: ["Photography", "Beginner", "Workshop"],
-  imageUrl: "https://images.pexels.com/photos/12528668/pexels-photo-12528668.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  imageUrl: "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   type: "Offline"
 }
 
@@ -121,7 +121,7 @@ const meetup4={
   dressCode: "Casual",
   ageRestrictions: "16 and above",
   tags: ["Coding", "Bootcamp", "Programming", "Development"],
-  imageUrl: "https://images.pexels.com/photos/1181670/pexels-photo-1181670.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  imageUrl: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   type: "Offline"
 }
 
@@ -148,7 +148,7 @@ const meetup5={
   dressCode: "Smart casual",
   ageRestrictions: "18 and above",
   tags: ["Social Media", "Marketing", , "Digital Marketing"],
-  imageUrl: "https://images.pexels.com/photos/3184450/pexels-photo-3184450.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  imageUrl: "https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   type: "Offline"
 }
 
@@ -174,7 +174,7 @@ async function createMeetup(newMeetup) {
 
 // add new book by post
 
-app.post('/meetups', async(req,res)=>{
+app.post('/meetup', async(req,res)=>{
   try{
     const savedMeetup = await createMeetup(req.body)
 
@@ -198,7 +198,7 @@ async function readAllMeetups() {
   }
 }
 
-app.get('/meetups',async (req,res)=>{
+app.get('/meetup/all',async (req,res)=>{
   try{
     const meetups=await readAllMeetups()
     if(meetups.length !=0){
@@ -225,7 +225,7 @@ async function readMeetupById(meetupId) {
   }
 }
 
-app.get('/meetups/:meetupId', async (req, res) => {
+app.get('/meetup/:meetupId', async (req, res) => {
   try {
     const meetup = await readMeetupById(req.params.meetupId);
     if (meetup) {
@@ -250,7 +250,7 @@ async function updateMeetupData(bookId,dataToUpdate) {
   }
 }
 
-app.post('/meetups/:meetupId', async (req,res)=>{
+app.post('/meetup/:meetupId', async (req,res)=>{
   try{
       const updatedMeetup= await updateMeetupData(req.params.bookId, req.body)
 
@@ -278,7 +278,7 @@ async function deleteMeetupById(meetupId) {
   }
 }
 
-app.delete('/meetups/:meetupId', async (req,res)=>{
+app.delete('/meetup/:meetupId', async (req,res)=>{
   try{
     const deleteMeetup= await deleteMeetupById(req.params.meetupId)
 

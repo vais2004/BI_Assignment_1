@@ -63,7 +63,7 @@ const MeetupSchema= new mongoose.Schema({
     type:{
         type:String,
         required:true,
-        enum:['Online', 'Offline']
+        enum:['Online', 'Offline', 'Both']
     },
 },{
     timestamps:true
